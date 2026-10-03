@@ -1,0 +1,657 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+
+  color: #122019;
+
+  background: #f8fcf9;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+.app {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1000;
+
+  height: 74px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 5.5rem;
+
+  /* Transparent so the hero can be seen behind it */
+  background: rgba(193, 228, 203, 0.35);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow: 0 4px 24px rgba(20, 60, 35, 0.04);
+}
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #122019;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  background: #14783d;
+
+  color: #ffffff;
+
+  box-shadow: 0 6px 16px rgba(20, 120, 61, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.logo:hover .logo-icon {
+  background: #0f6332;
+
+  transform: translateY(-1px);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1;
+}
+
+.logo-text strong {
+  font-size: 1.05rem;
+
+  font-weight: 800;
+
+  letter-spacing: -0.4px;
+}
+
+.logo-text small {
+  margin-top: 4px;
+
+  color: #718078;
+
+  font-size: 0.58rem;
+
+  font-weight: 800;
+
+  letter-spacing: 1.25px;
+}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.navigation {
+  display: flex;
+  align-items: center;
+
+  gap: 34px;
+}
+
+.navigation a {
+  position: relative;
+
+  padding: 28px 0;
+
+  color: #536159;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.navigation a:hover {
+  color: #14783d;
+}
+
+.navigation a.active {
+  color: #14783d;
+}
+
+.navigation a.active::after {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 15px;
+
+  height: 2px;
+
+  border-radius: 10px;
+
+  background: #14783d;
+}
+
+/* =====================================================
+   NAV BUTTON
+===================================================== */
+
+.nav-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 129px;
+
+  padding: 13px 20px;
+
+  border-radius: 9px;
+
+  background: #14783d;
+
+  color: #ffffff;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  box-shadow: 0 7px 18px rgba(20, 120, 61, 0.16);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nav-button:hover {
+  background: #0f6332;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 22px rgba(20, 120, 61, 0.22);
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+.hero {
+  position: relative;
+
+  height: 540px;
+  min-height: 570px;
+
+  margin-top: 74px;
+
+  background-image: var(--hero-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  background-position: center 38%;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+/* =====================================================
+   HERO OVERLAY
+===================================================== */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(248, 253, 250, 0.98) 0%,
+      rgba(248, 253, 250, 0.95) 25%,
+      rgba(248, 253, 250, 0.78) 43%,
+      rgba(248, 253, 250, 0.30) 63%,
+      rgba(20, 50, 35, 0.12) 100%
+    );
+
+  z-index: 1;
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+
+  width: min(560px, 90%);
+
+  margin-left: clamp(40px, 8vw, 120px);
+
+  padding: 170px 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+/* =====================================================
+   EYEBROW
+===================================================== */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+margin-top:5px;
+  padding: 0px 16px;
+
+  border: 1px solid rgba(20, 126, 69, 0.25);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  color: #08783e;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =====================================================
+   HERO HEADING
+===================================================== */
+
+.hero h1 {
+  margin: 0;
+
+  color: #0d2118;
+
+  font-size: clamp(58px, 6vw, 86px);
+
+  line-height: 0.95;
+
+  font-weight: 800;
+
+  letter-spacing: -4px;
+}
+
+.hero h1 span {
+  color: #087c40;
+}
+
+
+/* =====================================================
+   HERO DESCRIPTION
+===================================================== */
+
+.hero-description {
+  max-width: 520px;
+
+  margin: 30px 0 34px;
+
+  color: #29443a;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   HERO BUTTON
+===================================================== */
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  min-width: 180px;
+
+  padding: 16px 24px;
+
+  border-radius: 9px;
+
+  background: #117a40;
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  box-shadow:
+    0 12px 30px rgba(17, 122, 64, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.hero-button:hover {
+  background: #0b6634;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 16px 34px rgba(17, 122, 64, 0.30);
+}
+
+.button-arrow {
+  font-size: 19px;
+
+  transition: transform 0.25s ease;
+}
+
+.hero-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+
+/* =====================================================
+   HERO GLOW
+===================================================== */
+
+.hero-glow {
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  right: 8%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  filter: blur(90px);
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
+
+.section {
+  min-height: 70vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 100px 6%;
+
+  background: #ffffff;
+}
+
+.section-content {
+  width: 100%;
+
+  max-width: 900px;
+
+  text-align: center;
+}
+
+.section-label {
+  margin-bottom: 12px;
+
+  color: #14783d;
+
+  font-size: 0.75rem;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.section h2 {
+  margin-bottom: 18px;
+
+  color: #122019;
+
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+
+  letter-spacing: -1.5px;
+}
+
+.section p {
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  color: #607068;
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+}
+
+.about-section {
+  background: #f4faf6;
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 0 4%;
+  }
+
+  .navigation {
+    gap: 22px;
+  }
+
+  .nav-button {
+    min-width: auto;
+
+    padding: 12px 16px;
+  }
+
+  .hero {
+    padding: 120px 5% 70px;
+
+    background-position: 62% center;
+  }
+
+  .hero-content {
+    width: 58%;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 4.7rem);
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+  .navbar {
+    height: 70px;
+
+    padding: 0 20px;
+  }
+
+  .logo-icon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .logo-text strong {
+    font-size: 0.98rem;
+  }
+
+  .logo-text small {
+    font-size: 0.52rem;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .nav-button {
+    padding: 11px 15px;
+
+    font-size: 0.78rem;
+  }
+
+  .hero {
+    min-height: 100vh;
+
+    align-items: flex-start;
+
+    padding: 125px 24px 60px;
+
+    background-position: 68% center;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(248, 253, 249, 0.98) 0%,
+
+      rgba(248, 253, 249, 0.94) 35%,
+
+      rgba(248, 253, 249, 0.72) 55%,
+
+      rgba(248, 253, 249, 0.25) 78%,
+
+      rgba(20, 60, 38, 0.15) 100%
+    );
+  }
+
+  .hero-content {
+    width: 100%;
+
+    max-width: 600px;
+  }
+
+  .eyebrow {
+    margin-bottom: 22px;
+
+    font-size: 0.65rem;
+  }
+
+  .hero h1 {
+    margin-bottom: 22px;
+
+    font-size: clamp(3.2rem, 15vw, 4.8rem);
+
+    letter-spacing: -2.5px;
+  }
+
+  .hero-description {
+    max-width: 500px;
+
+    margin-bottom: 28px;
+
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+  }
+
+  .hero-button {
+    padding: 14px 21px;
+  }
+
+  .section {
+    min-height: 60vh;
+
+    padding: 80px 24px;
+  }
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 420px) {
+  .nav-button {
+    display: none;
+  }
+
+  .hero {
+    padding: 110px 20px 50px;
+
+    background-position: 72% center;
+  }
+
+  .hero h1 {
+    font-size: 3.15rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+}
