@@ -1,7 +1,13 @@
+const dns = require("dns");
+
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+
+const courseRoutes = require("./routes/courseRoutes");
 
 const app = express();
 
@@ -9,9 +15,10 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-const dns = require("dns");
 
-dns.setServers(["8.8.8.8", "8.8.4.4"]);
+// Course routes
+app.use("/api/courses", courseRoutes);
+
 // MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
