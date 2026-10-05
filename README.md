@@ -85,3 +85,48 @@ FreshCart-Learning-Hub/
 │
 ├── README.md
 └── .gitignore
+
+# Task 2 — Database and Course API
+
+Task 2 focuses on connecting the FreshCart Learning Hub backend to MongoDB Atlas and building a REST API for courses and lessons.
+
+## What Was Implemented
+
+- Connected Express backend to a free MongoDB Atlas cluster
+- Added `.env` configuration using `dotenv`
+- Created Course and Lesson Mongoose schemas
+- Added required field validation
+- Added title ,description,`videoUrl` fields for courses and lessons
+- Implemented Course CRUD REST endpoints:
+  - `GET /api/courses`
+  - `POST /api/courses`
+  - `PUT /api/courses/:id`
+  - `DELETE /api/courses/:id`
+- Added pagination using `page` and `limit`
+- Added validation and error handling
+- Added proper HTTP status codes
+- Created a database seed script
+- Seeded 3 FreshCart courses with 2 lessons each
+- Tested the API using Postman
+
+## Sample Learning Content
+
+The seeded courses focus on:
+
+- Organic Foods
+- Seasonal Recipes
+- Sustainable Shopping
+
+Each course contains two lessons related to its topic.
+
+## API Example
+GET /api/courses?page=1&limit=2
+
+## Tools Used
+Node.js
+Express
+MongoDB Atlas
+Mongoose
+dotenv
+Postman
+Git/GitHub
