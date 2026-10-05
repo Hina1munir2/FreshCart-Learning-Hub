@@ -96,13 +96,27 @@ router.post("/", async (req, res) => {
     });
 
     res.status(201).json(course);
-  } catch (error) {
-    console.error("Error creating course:", error);
+} catch (error) {
+  console.error("Error creating course:", error);
 
-    res.status(500).json({
-      message: "Failed to create course",
+  if (error.name === "ValidationError") {
+    return res.status(400).json({
+      message: "Validation failed",
+      errors: Object.values(error.errors).map((err) => err.message),
     });
   }
+
+  if (error.name === "CastError") {
+    return res.status(400).json({
+      message: "Invalid course data",
+    });
+  }
+
+  return res.status(500).json({
+    message: "Failed to create course",
+    error: error.message,
+  });
+}
 });
 
 // ======================================================
@@ -127,13 +141,20 @@ router.put("/:id", async (req, res) => {
     }
 
     res.status(200).json(course);
-  } catch (error) {
-    console.error("Error updating course:", error);
+ } catch (error) {
+  console.error("Error updating course:", error);
 
-    res.status(500).json({
-      message: "Failed to update course",
+  if (error.name === "ValidationError") {
+    return res.status(400).json({
+      message: "Validation failed",
+      errors: Object.values(error.errors).map((err) => err.message),
     });
   }
+
+  res.status(500).json({
+    message: "Failed to update course",
+  });
+}
 });
 
 // ======================================================
