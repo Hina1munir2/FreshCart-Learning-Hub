@@ -43,6 +43,12 @@ const courseSchema = new mongoose.Schema(
       default: "",
     },
 
+    videoUrl: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
     published: {
       type: Boolean,
       default: true,
