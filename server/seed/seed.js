@@ -22,6 +22,7 @@ const courses = [
     videoUrl: "https://www.youtube.com/watch?v=organic-foods",
     published: true,
   },
+
   {
     title: "Seasonal Recipes for Healthy Eating",
     description:
@@ -34,6 +35,7 @@ const courses = [
     videoUrl: "https://www.youtube.com/watch?v=seasonal-recipes",
     published: true,
   },
+
   {
     title: "Sustainable Shopping Basics",
     description:
@@ -44,18 +46,6 @@ const courses = [
     level: "Beginner",
     image: "",
     videoUrl: "https://www.youtube.com/watch?v=sustainable-shopping",
-    published: true,
-  },
-  {
-    title: "Smart Grocery Shopping",
-    description:
-      "Learn how to plan your grocery trips, compare products, reduce unnecessary purchases, and shop more responsibly.",
-    category: "Sustainable Shopping",
-    instructor: "FreshCart Learning Team",
-    duration: "4 weeks",
-    level: "Intermediate",
-    image: "",
-    videoUrl: "https://www.youtube.com/watch?v=smart-shopping",
     published: true,
   },
 ];
@@ -70,6 +60,7 @@ const lessons = [
     duration: "8 minutes",
     order: 1,
   },
+
   {
     title: "Reading Organic Labels",
     description:
@@ -77,14 +68,6 @@ const lessons = [
     videoUrl: "https://www.youtube.com/watch?v=organic-labels",
     duration: "10 minutes",
     order: 2,
-  },
-  {
-    title: "Benefits of Organic Produce",
-    description:
-      "Explore the benefits of organic produce and how it can fit into everyday shopping.",
-    videoUrl: "https://www.youtube.com/watch?v=organic-benefits",
-    duration: "12 minutes",
-    order: 3,
   },
 
   // Seasonal Recipes
@@ -96,21 +79,14 @@ const lessons = [
     duration: "8 minutes",
     order: 1,
   },
-  {
-    title: "Choosing Seasonal Ingredients",
-    description:
-      "Learn how to identify seasonal fruits and vegetables when planning your grocery list.",
-    videoUrl: "https://www.youtube.com/watch?v=seasonal-ingredients",
-    duration: "10 minutes",
-    order: 2,
-  },
+
   {
     title: "Simple Seasonal Recipes",
     description:
       "Explore simple recipe ideas using fresh seasonal ingredients.",
     videoUrl: "https://www.youtube.com/watch?v=seasonal-recipes",
     duration: "15 minutes",
-    order: 3,
+    order: 2,
   },
 
   // Sustainable Shopping
@@ -122,6 +98,7 @@ const lessons = [
     duration: "10 minutes",
     order: 1,
   },
+
   {
     title: "Choosing Sustainable Products",
     description:
@@ -129,40 +106,6 @@ const lessons = [
     videoUrl: "https://www.youtube.com/watch?v=sustainable-products",
     duration: "12 minutes",
     order: 2,
-  },
-  {
-    title: "Reusable and Responsible Shopping",
-    description:
-      "Learn how reusable bags, containers, and thoughtful purchasing habits can support sustainable shopping.",
-    videoUrl: "https://www.youtube.com/watch?v=reusable-shopping",
-    duration: "9 minutes",
-    order: 3,
-  },
-
-  // Smart Grocery Shopping
-  {
-    title: "Planning Your Grocery Trip",
-    description:
-      "Learn how to create a practical shopping plan before visiting the store.",
-    videoUrl: "https://www.youtube.com/watch?v=grocery-planning",
-    duration: "9 minutes",
-    order: 1,
-  },
-  {
-    title: "Making Better Product Choices",
-    description:
-      "Learn how to compare products and make informed purchasing decisions.",
-    videoUrl: "https://www.youtube.com/watch?v=product-choices",
-    duration: "11 minutes",
-    order: 2,
-  },
-  {
-    title: "Building Sustainable Shopping Habits",
-    description:
-      "Put your knowledge together and create sustainable shopping habits for everyday life.",
-    videoUrl: "https://www.youtube.com/watch?v=shopping-habits",
-    duration: "13 minutes",
-    order: 3,
   },
 ];
 
@@ -185,16 +128,13 @@ async function seedDatabase() {
     const lessonsWithCourses = lessons.map((lesson, index) => {
       let courseIndex;
 
-      if (index < 3) {
-        courseIndex = 0;
-      } else if (index < 6) {
-        courseIndex = 1;
-      } else if (index < 9) {
-        courseIndex = 2;
-      } else {
-        courseIndex = 3;
-      }
-
+      if (index < 2) {
+    courseIndex = 0;
+  } else if (index < 4) {
+    courseIndex = 1;
+  } else {
+    courseIndex = 2;
+  }
       return {
         ...lesson,
         course: createdCourses[courseIndex]._id,
