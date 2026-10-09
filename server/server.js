@@ -8,6 +8,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const courseRoutes = require("./routes/courseRoutes");
+const authRoutes = require("./routes/authRoutes");
+
+const enrollmentRoutes = require("./routes/enrollmentRoutes");
+const progressRoutes = require("./routes/progressRoutes");
 
 const app = express();
 
@@ -18,6 +22,10 @@ app.use(express.json());
 
 // Course routes
 app.use("/api/courses", courseRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/enrollments", enrollmentRoutes);
+app.use("/api/progress", progressRoutes);
+
 
 // MongoDB connection
 mongoose
