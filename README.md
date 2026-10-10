@@ -130,3 +130,20 @@ Mongoose
 dotenv
 Postman
 Git/GitHub
+
+## Task 3: Authentication and Authorization
+
+### What I Did
+- Created a User model to store user email, hashed password, and role.
+- Implemented user registration and login using Express.js.
+- Used bcrypt to hash passwords and verify login credentials securely.
+- Implemented JSON Web Token (JWT) authentication with a **7-day expiration**.
+- Created authentication middleware to protect API routes and reject missing or invalid tokens.
+- Protected enrollment and learning progress endpoints so users can access their own data through authenticated requests.
+- Tested registration, login, token expiration, and protected endpoints using Postman.
+
+### Why I Did It
+These features improve application security by protecting passwords, verifying user identity, and preventing unauthorized access to protected API endpoints.
+
+### Technologies Used
+Node.js, Express.js, MongoDB atlas, Mongoose, bcrypt, JSON Web Token (JWT), and Postman.
