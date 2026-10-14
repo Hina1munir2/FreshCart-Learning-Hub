@@ -7,16 +7,42 @@ const router = express.Router();
 // GET ALL COURSES - WITH PAGINATION
 // GET /api/courses?page=1&limit=5
 // ======================================================
+
 router.get("/", async (req, res) => {
   try {
-    const page = Math.max(parseInt(req.query.page) || 1, 1);
-    const limit = Math.max(parseInt(req.query.limit) || 5, 1);
+    const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+    const limit = Math.min(
+      Math.max(parseInt(req.query.limit, 10) || 6, 1),
+      50
+    );
 
+    const search = (req.query.search || "").trim();
+    const category = (req.query.category || "").trim();
+
+    const filter = { published: true };
+
+    const escapeRegex = (value) =>
+      value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+    if (search) {
+      filter.title = {
+        $regex: escapeRegex(search),
+        $options: "i",
+      };
+    }
+
+    if (category && category.toLowerCase() !== "all") {
+      filter.category = {
+        $regex: `^${escapeRegex(category)}$`,
+        $options: "i",
+      };
+    }
+
+    const totalCourses = await Course.countDocuments(filter);
+    const totalPages = Math.ceil(totalCourses / limit);
     const skip = (page - 1) * limit;
 
-    const totalCourses = await Course.countDocuments();
-
-    const courses = await Course.find()
+    const courses = await Course.find(filter)
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
@@ -27,9 +53,9 @@ router.get("/", async (req, res) => {
         currentPage: page,
         limit,
         totalCourses,
-        totalPages: Math.ceil(totalCourses / limit),
-        hasNextPage: page < Math.ceil(totalCourses / limit),
-        hasPreviousPage: page > 1,
+        totalPages,
+        hasNextPage: page < totalPages,
+        hasPreviousPage: page > 1 && page <= totalPages,
       },
     });
   } catch (error) {
@@ -72,28 +98,30 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const {
-      title,
-      description,
-      category,
-      instructor,
-      duration,
-      level,
-      image,
-      videoUrl,
-      published,
-    } = req.body;
+  title,
+  description,
+  category,
+  instructor,
+  duration,
+  level,
+  image,
+  videoUrl,
+  lessons,
+  published,
+} = req.body;
 
-    const course = await Course.create({
-      title,
-      description,
-      category,
-      instructor,
-      duration,
-      level,
-      image,
-      videoUrl,
-      published,
-    });
+   const course = await Course.create({
+  title,
+  description,
+  category,
+  instructor,
+  duration,
+  level,
+  image,
+  videoUrl,
+  lessons: lessons || [],
+  published,
+});
 
     res.status(201).json(course);
 } catch (error) {

@@ -15,6 +15,17 @@ const enrollmentSchema = new mongoose.Schema(
       required: true,
     },
 
+    // IDs of the lessons completed by this student.
+    completedLessons: {
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+        },
+      ],
+      default: [],
+    },
+
+    // Overall course completion percentage.
     progress: {
       type: Number,
       default: 0,
@@ -33,7 +44,7 @@ const enrollmentSchema = new mongoose.Schema(
   }
 );
 
-// Prevent the same user enrolling in the same course twice
+// Prevent duplicate enrollment in the same course.
 enrollmentSchema.index(
   { user: 1, course: 1 },
   { unique: true }

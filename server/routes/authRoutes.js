@@ -11,41 +11,54 @@ const router = express.Router();
 // POST /api/auth/register
 // ==========================================
 
+
 router.post("/register", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
     // Check required fields
-    if (!email || !password) {
+    if (!name?.trim() || !email?.trim() || !password) {
       return res.status(400).json({
-        message: "Email and password are required",
+        message: "Name, email, and password are required",
       });
     }
 
-    // Check if user already exists
+    // Check password length
+    if (password.length < 6) {
+      return res.status(400).json({
+        message: "Password must be at least 6 characters long",
+      });
+    }
+
+    // Normalize email
+    const normalizedEmail = email.trim().toLowerCase();
+
+    // Check whether the email is already registered
     const existingUser = await User.findOne({
-      email: email.toLowerCase(),
+      email: normalizedEmail,
     });
 
     if (existingUser) {
-      return res.status(400).json({
-        message: "User already exists",
+      return res.status(409).json({
+        message: "An account with this email already exists",
       });
     }
 
-    // Hash password
+    // Hash the password before saving it
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
+    // Create the user
     const user = await User.create({
-      email: email.toLowerCase(),
+      name: name.trim(),
+      email: normalizedEmail,
       password: hashedPassword,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "User registered successfully",
       user: {
         id: user._id,
+        name: user.name,
         email: user.email,
         role: user.role,
       },
@@ -53,12 +66,23 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     console.error("Registration error:", error);
 
-    res.status(500).json({
+    if (error.code === 11000) {
+      return res.status(409).json({
+        message: "An account with this email already exists",
+      });
+    }
+
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        message: error.message,
+      });
+    }
+
+    return res.status(500).json({
       message: "Failed to register user",
     });
   }
 });
-
 
 /* ==========================================
    LOGIN USER

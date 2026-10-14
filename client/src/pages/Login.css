@@ -1,0 +1,370 @@
+
+/* ========================================
+   PAGE BACKGROUND
+======================================== */
+
+.fresh-login-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  background-color: #244b31;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(12, 37, 21, 0.28),
+      rgba(19, 51, 28, 0.12)
+    ),
+    var(--login-image);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ========================================
+   TRANSPARENT LOGIN CARD
+======================================== */
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 38px 36px;
+  box-sizing: border-box;
+
+  /* Transparent glass effect */
+  background: rgba(190, 181, 181, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 24px;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+  color: #17251b;
+}
+
+/* ========================================
+   FRESHCART CART-AND-LEAF LOGO
+======================================== */
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+
+  color: #237a40;
+  font-size: 29px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  text-decoration: none;
+}
+
+.login-logo .cart-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.login-logo:hover {
+  color: #176b35;
+}
+
+/* ========================================
+   HEADINGS
+======================================== */
+
+.login-card h2 {
+  margin: 0 0 10px;
+  color: #173b25;
+  font-size: 30px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.login-card .sub-text {
+  margin: 0 0 28px;
+  color: #263d2d;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ========================================
+   FORM FIELDS
+======================================== */
+
+.login-card .form-group {
+  margin-bottom: 20px;
+}
+
+.login-card .form-group > label {
+  display: block;
+  margin-bottom: 8px;
+  color: #173b25;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.login-card .form-group > input,
+.login-card .password-wrap > input {
+  display: block;
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  box-sizing: border-box;
+
+  border: 1px solid rgba(35, 107, 59, 0.35);
+  border-radius: 10px;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.86);
+  color: #17251b;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-card input::placeholder {
+  color: #66766a;
+  opacity: 1;
+}
+
+.login-card .form-group > input:focus,
+.login-card .password-wrap > input:focus {
+  border-color: #278447;
+  box-shadow: 0 0 0 3px rgba(39, 132, 71, 0.16);
+}
+
+/* ========================================
+   PASSWORD FIELD AND EYE ICON
+======================================== */
+
+.login-card .password-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.login-card .password-wrap > input {
+  padding-right: 48px;
+}
+
+.login-card .eye {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 34px;
+  padding: 0;
+
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #237a40;
+  cursor: pointer;
+}
+
+.login-card .eye:hover {
+  color: #124522;
+}
+
+.login-card .eye:focus-visible {
+  outline: 2px solid #278447;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   REMEMBER ME AND FORGOT PASSWORD
+======================================== */
+
+.login-card .options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 4px 0 24px;
+
+  font-size: 12px;
+}
+
+.login-card .remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #17251b;
+  cursor: pointer;
+}
+
+.login-card .remember input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #237a40;
+  cursor: pointer;
+}
+
+.login-card .options a,
+.login-card .signup-text a {
+  color: #176b35;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.login-card .options a:hover,
+.login-card .signup-text a:hover {
+  color: #104b25;
+  text-decoration: underline;
+}
+
+/* ========================================
+   LOGIN ERROR
+======================================== */
+
+.login-card .login-error {
+  margin-bottom: 16px;
+  padding: 11px 12px;
+
+  border: 1px solid rgba(150, 30, 30, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 235, 235, 0.92);
+  color: #9b1c1c;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ========================================
+   LOGIN BUTTON
+======================================== */
+
+.login-card .login-btn {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 18px;
+
+  border: none;
+  border-radius: 10px;
+  background: #237a40;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+
+  box-shadow: 0 5px 12px rgba(35, 122, 64, 0.18);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.login-card .login-btn:hover:not(:disabled) {
+  background: #185d30;
+  transform: translateY(-1px);
+}
+
+.login-card .login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   SIGN-UP TEXT
+======================================== */
+
+.login-card .signup-text {
+  margin: 24px 0 16px;
+  color: #263d2d;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ========================================
+   BACK TO HOME LINK
+======================================== */
+
+.login-card .back-home {
+  display: block;
+  color: #176b35;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.login-card .back-home:hover {
+  color: #104b25;
+  text-decoration: underline;
+}
+
+/* ========================================
+   MOBILE RESPONSIVENESS
+======================================== */
+
+@media (max-width: 480px) {
+  .fresh-login-wrapper {
+    padding: 24px 14px;
+    background-position: center;
+  }
+
+  .login-card {
+    max-width: 100%;
+    padding: 30px 22px;
+    border-radius: 20px;
+  }
+
+  .login-logo {
+    margin-bottom: 23px;
+    font-size: 26px;
+  }
+
+  .login-logo .cart-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .login-card h2 {
+    font-size: 26px;
+  }
+
+  .login-card .sub-text {
+    font-size: 13px;
+  }
+
+  .login-card .options {
+    font-size: 11px;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION ACCESSIBILITY
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .login-card *,
+  .login-card *::before,
+  .login-card *::after {
+    transition: none !important;
+  }
+}

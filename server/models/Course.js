@@ -1,4 +1,24 @@
+
 const mongoose = require("mongoose");
+
+const lessonSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  videoUrl: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  order: {
+    type: Number,
+    default: 1,
+  },
+});
 
 const courseSchema = new mongoose.Schema(
   {
@@ -43,10 +63,17 @@ const courseSchema = new mongoose.Schema(
       default: "",
     },
 
+    // Keep this field for compatibility with existing courses.
     videoUrl: {
       type: String,
       default: "",
       trim: true,
+    },
+
+    // Individual lessons belonging to this course.
+    lessons: {
+      type: [lessonSchema],
+      default: [],
     },
 
     published: {

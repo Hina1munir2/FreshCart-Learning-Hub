@@ -147,3 +147,57 @@ These features improve application security by protecting passwords, verifying u
 
 ### Technologies Used
 Node.js, Express.js, MongoDB atlas, Mongoose, bcrypt, JSON Web Token (JWT), and Postman.
+
+# Task 4: FreshCart Learning Hub — Course Catalog and Learning Progress
+
+## Overview
+
+In Task 4, I developed React pages for FreshCart Learning Hub to allow users to browse courses, enroll in courses, watch lesson videos, and track their learning progress. The application uses React, Axios, React Router, and JWT-based authentication to connect the frontend with the backend API.
+
+## Features Implemented
+
+### 1. Authentication and User Management
+- Used `AuthContext` to manage authentication state and user information.
+- Stored and used the JWT token for authenticated API requests.
+- Restricted enrollment and learning features to logged-in users.
+
+### 2. Course Catalog
+- Fetched course information from the backend using Axios.
+- Displayed courses in a responsive card layout.
+- Implemented pagination to navigate through course lists.
+- Added a search bar to search for courses by title.
+- Added a category dropdown to filter courses.
+
+### 3. Course Enrollment
+- Added an **Enroll Now** button to course cards.
+- Connected enrollment to the protected `POST /api/enrollments` endpoint.
+- Updated the button and interface to show when a user is enrolled.
+- Redirected users to the login page when authentication is required.
+
+### 4. Lesson Viewer
+- Retrieved course and lesson information from the backend.
+- Implemented lesson video playback using the available video URL.
+- Added functionality to mark a lesson as completed through a backend API request.
+- Provided navigation to the selected lesson using its course and lesson IDs.
+
+### 5. User Dashboard and Progress Tracking
+- Displayed enrolled courses on the user dashboard.
+- Added course information, including titles and descriptions.
+- Included progress bars to visually represent course completion.
+- Connected the dashboard to enrollment and learning-progress information.
+
+### 6. Responsive User Interface
+- Used CSS to create a clean, consistent course catalog and dashboard.
+- Added responsive layouts for different screen sizes.
+- Used green-themed course cards, buttons, and progress indicators to match the FreshCart Learning Hub design.
+
+## Technologies Used
+
+- **React** — building reusable UI components and pages.
+- **Axios** — communicating with backend API endpoints.
+- **React Router** — navigation between pages and lessons.
+- **JWT** — authentication for protected operations.
+- **Bootstrap and CSS** — responsive interface styling.
+- **React Testing Library** — testing React components.
+
+
