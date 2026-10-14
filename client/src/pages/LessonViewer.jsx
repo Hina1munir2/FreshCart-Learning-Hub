@@ -14,7 +14,7 @@ const LessonViewer = () => {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
 
-  // Load course information and the signed-in user's progress.
+  // Load course information and saved progress.
   useEffect(() => {
     const loadLesson = async () => {
       setLoading(true);
@@ -22,14 +22,14 @@ const LessonViewer = () => {
       setNotice("");
 
       try {
-        // Fetch course details and lesson video URLs.
         const courseResponse = await api.get(`/courses/${courseId}`);
+
         const courseData =
           courseResponse.data.course || courseResponse.data;
 
         setCourse(courseData);
 
-        // Fetch saved progress for the signed-in user.
+        // Load progress for the signed-in user.
         const progressResponse = await api.get("/progress");
 
         const enrollmentProgress = (
@@ -72,17 +72,17 @@ const LessonViewer = () => {
 
   const lessons = course?.lessons || [];
 
-  // Find the lesson currently selected in the URL.
+  // Find the lesson selected in the URL.
   const currentLesson = lessons.find(
     (lesson) => String(lesson._id) === String(lessonId)
   );
 
-  // Check whether the current lesson has already been completed.
+  // Check whether the lesson has been completed.
   const isCompleted =
     currentLesson &&
     completedLessons.includes(String(currentLesson._id));
 
-  // Count only completed lessons that still belong to this course.
+  // Count completed lessons belonging to this course.
   const completedLessonCount = lessons.filter((lesson) =>
     completedLessons.includes(String(lesson._id))
   ).length;
@@ -102,13 +102,11 @@ const LessonViewer = () => {
         `/progress/${courseId}/lessons/${currentLesson._id}/complete`
       );
 
-      // Update the interface with the progress returned by the server.
       setCompletedLessons(
         (response.data.completedLessons || []).map(String)
       );
 
       setProgress(response.data.progress || 0);
-
       setNotice("Lesson completed successfully!");
     } catch (err) {
       console.error("Failed to update progress:", err);
@@ -131,7 +129,7 @@ const LessonViewer = () => {
     );
   }
 
-  // Error state when course information could not be loaded.
+  // Course loading error.
   if (error && !course) {
     return (
       <div className="lesson-state">
@@ -175,21 +173,26 @@ const LessonViewer = () => {
 
       <div className="lesson-layout">
         <section className="lesson-main">
+          {/* Embedded YouTube video */}
           <div className="lesson-video">
-            {currentLesson.videoUrl ? (
-              <video
-                key={currentLesson._id}
-                controls
-                preload="metadata"
-                src={currentLesson.videoUrl}
-              >
-                Your browser does not support video playback.
-              </video>
-            ) : (
-              <p>
-                No video has been added to this lesson yet.
-              </p>
-            )}
+            <iframe
+              key={currentLesson._id}
+               src={
+      currentLesson.title.trim().toLowerCase() ===
+      "why eat seasonal foods"
+        ? "https://www.youtube.com/embed/tIE3bRVI1Ig"
+        : "https://www.youtube.com/embed/jGcWxWlmhFw"
+    }
+              title={currentLesson.title || "Lesson video"}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              style={{
+                width: "100%",
+                aspectRatio: "16 / 9",
+                border: "none",
+              }}
+            />
           </div>
 
           <div className="lesson-details">
@@ -251,8 +254,7 @@ const LessonViewer = () => {
           </div>
 
           <p className="lesson-count">
-            {completedLessonCount} of {lessons.length} lessons
-            completed
+            {completedLessonCount} of {lessons.length} lessons completed
           </p>
 
           <div className="lesson-list">
