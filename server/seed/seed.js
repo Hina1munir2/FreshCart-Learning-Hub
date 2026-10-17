@@ -19,7 +19,7 @@ const courses = [
     duration: "3 weeks",
     level: "Beginner",
     image: "",
-    videoUrl: "https://www.youtube.com/watch?v=organic-foods",
+    videoUrl: "https://youtu.be/8PmM6SUn7Es?si=J0tPvXr8gPW5rDO1",
     published: true,
   },
 
@@ -32,7 +32,7 @@ const courses = [
     duration: "4 weeks",
     level: "Beginner",
     image: "",
-    videoUrl: "https://www.youtube.com/watch?v=seasonal-recipes",
+    videoUrl: "https://youtu.be/BCJl7jWDaO4?si=uVWyt87F6Jaqkyv6",
     published: true,
   },
 
@@ -45,7 +45,7 @@ const courses = [
     duration: "3 weeks",
     level: "Beginner",
     image: "",
-    videoUrl: "https://www.youtube.com/watch?v=sustainable-shopping",
+    videoUrl: "https://youtu.be/aS84qi14WWc?si=6z5jAB0M-0Rg9ayN",
     published: true,
   },
 ];
@@ -56,8 +56,8 @@ const lessons = [
     title: "What Does Organic Mean?",
     description:
       "Understand the basic meaning of organic food and how organic farming differs from conventional farming.",
-    videoUrl: "https://www.youtube.com/watch?v=organic-foods",
-    duration: "8 minutes",
+    videoUrl: "https://youtu.be/_hkWk3SxDD4?si=F6g6b3h-tBB7tLQ2",
+    duration: "4 minutes",
     order: 1,
   },
 
@@ -65,8 +65,8 @@ const lessons = [
     title: "Reading Organic Labels",
     description:
       "Learn how to recognize organic labels and understand what they tell you about a product.",
-    videoUrl: "https://www.youtube.com/watch?v=organic-labels",
-    duration: "10 minutes",
+    videoUrl: "https://youtu.be/CgVbJQEjZck?si=yM6W-kWpVBgOPxcm",
+    duration: "1.5 minutes",
     order: 2,
   },
 
@@ -75,8 +75,8 @@ const lessons = [
     title: "Why Eat Seasonal Foods?",
     description:
       "Learn why seasonal ingredients can be fresh, flavorful, and useful for planning healthy meals.",
-    videoUrl: "https://www.youtube.com/watch?v=seasonal-foods",
-    duration: "8 minutes",
+    videoUrl: "https://youtu.be/tIE3bRVI1Ig?si=qvQMUPwXlzMfCLSb",
+    duration: "5 minutes",
     order: 1,
   },
 
@@ -84,8 +84,8 @@ const lessons = [
     title: "Simple Seasonal Recipes",
     description:
       "Explore simple recipe ideas using fresh seasonal ingredients.",
-    videoUrl: "https://www.youtube.com/watch?v=seasonal-recipes",
-    duration: "15 minutes",
+    videoUrl: "https://youtu.be/XskhZMswCpY?si=SSdh7wZYyRNeAsLs",
+    duration: "12 minutes",
     order: 2,
   },
 
@@ -94,8 +94,8 @@ const lessons = [
     title: "Reducing Food Waste",
     description:
       "Learn simple habits that can help reduce food waste at home.",
-    videoUrl: "https://www.youtube.com/watch?v=food-waste",
-    duration: "10 minutes",
+    videoUrl: "https://youtu.be/8NCm2Q1rZOM?si=kyawz4n9aEdoyX7J",
+    duration: "17 minutes",
     order: 1,
   },
 
@@ -103,8 +103,8 @@ const lessons = [
     title: "Choosing Sustainable Products",
     description:
       "Understand how product choices can affect the environment and learn practical shopping tips.",
-    videoUrl: "https://www.youtube.com/watch?v=sustainable-products",
-    duration: "12 minutes",
+    videoUrl: "https://youtu.be/UodzF2PZg-M?si=QOikXogY7jsqw4DI",
+    duration: "1 minutes",
     order: 2,
   },
 ];

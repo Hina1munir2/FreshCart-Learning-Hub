@@ -3,6 +3,38 @@ import { Link, useParams } from "react-router-dom";
 import api from "../api/axios";
 import "./LessonViewer.css";
 
+const getYouTubeEmbedUrl = (url = "") => {
+  try {
+    const parsedUrl = new URL(url);
+
+    if (parsedUrl.hostname === "youtu.be") {
+      return `https://www.youtube.com/embed/${parsedUrl.pathname.slice(1)}`;
+    }
+
+    if (
+      parsedUrl.hostname === "youtube.com" ||
+      parsedUrl.hostname === "www.youtube.com" ||
+      parsedUrl.hostname === "m.youtube.com"
+    ) {
+      if (parsedUrl.pathname === "/watch") {
+        const videoId = parsedUrl.searchParams.get("v");
+
+        return videoId
+          ? `https://www.youtube.com/embed/${videoId}`
+          : "";
+      }
+
+      if (parsedUrl.pathname.startsWith("/embed/")) {
+        return url;
+      }
+    }
+
+    return "";
+  } catch {
+    return "";
+  }
+};
+
 const LessonViewer = () => {
   const { courseId, lessonId } = useParams();
 
@@ -174,26 +206,27 @@ const LessonViewer = () => {
       <div className="lesson-layout">
         <section className="lesson-main">
           {/* Embedded YouTube video */}
-          <div className="lesson-video">
-            <iframe
-              key={currentLesson._id}
-               src={
-      currentLesson.title.trim().toLowerCase() ===
-      "why eat seasonal foods"
-        ? "https://www.youtube.com/embed/tIE3bRVI1Ig"
-        : "https://www.youtube.com/embed/jGcWxWlmhFw"
-    }
-              title={currentLesson.title || "Lesson video"}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              style={{
-                width: "100%",
-                aspectRatio: "16 / 9",
-                border: "none",
-              }}
-            />
-          </div>
+         <div className="lesson-video">
+  {getYouTubeEmbedUrl(currentLesson.videoUrl) ? (
+    <iframe
+      key={currentLesson._id}
+      src={getYouTubeEmbedUrl(currentLesson.videoUrl)}
+      title={currentLesson.title || "Lesson video"}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+      style={{
+        width: "100%",
+        aspectRatio: "16 / 9",
+        border: "none",
+      }}
+    />
+  ) : (
+    <p>
+      No valid YouTube video URL is available for this lesson.
+    </p>
+  )}
+</div>
 
           <div className="lesson-details">
             <p className="lesson-eyebrow">
