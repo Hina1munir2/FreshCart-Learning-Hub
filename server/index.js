@@ -1,6 +1,11 @@
 
-const app = require("./server");
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
+require("dotenv").config();
+
 const mongoose = require("mongoose");
+const app = require("./server");
 
 let connectionPromise;
 
@@ -12,7 +17,7 @@ async function connectToDatabase() {
   if (!connectionPromise) {
     connectionPromise = mongoose
       .connect(process.env.MONGO_URI, {
-        serverSelectionTimeoutMS: 10000,
+        serverSelectionTimeoutMS: 15000,
       })
       .catch((error) => {
         connectionPromise = null;
@@ -23,16 +28,15 @@ async function connectToDatabase() {
   await connectionPromise;
 }
 
-app.use(async (req, res, next) => {
+module.exports = async (req, res) => {
   try {
     await connectToDatabase();
-    next();
+    return app(req, res);
   } catch (error) {
     console.error("MongoDB connection failed:", error.message);
-    res.status(503).json({
+
+    return res.status(503).json({
       message: "Database connection failed",
     });
   }
-});
-
-module.exports = app;
+};
