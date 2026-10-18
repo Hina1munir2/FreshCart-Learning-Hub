@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://fresh-cart-learning-hub-6ahj-2rw33bpc3-hm19.vercel.app/api",
+  baseURL: "https://fresh-cart-learning-hub-6ahj.vercel.app/api",
   headers: {
     "Content-Type": "application/json",
   },
