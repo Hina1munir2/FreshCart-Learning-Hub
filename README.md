@@ -201,3 +201,61 @@ In Task 4, I developed React pages for FreshCart Learning Hub to allow users to 
 - **React Testing Library** — testing React components.
 
 
+# Task 5: Testing, Security, CI/CD, and Deployment
+
+## Overview
+Task 5 focused on improving the reliability, security, maintainability, and deployment readiness of FreshCart Learning Hub, a full-stack Learning Management System (LMS) built with React, Express.js, and MongoDB.
+
+## Work Completed
+
+### 1. Backend Security
+- Integrated **Helmet** middleware to add HTTP security headers.
+- Configured **Express Rate Limit** to restrict excessive requests and reduce the risk of abuse.
+- Applied security middleware within the Express application.
+- Used JWT-based authentication and protected routes to control access to authorized resources.
+
+### 2. Backend Testing
+- Created automated backend tests using **Jest and Supertest**.
+- Tested authentication, course, and enrollment API endpoints.
+- Checked API responses and route behavior to identify potential errors.
+- Achieved **86.74% backend test coverage**, exceeding the required 80% target.
+
+### 3. Frontend Component Testing
+- Added component tests using **React Testing Library** and Jest.
+- Tested key frontend component behavior and rendering.
+- Used automated tests to help identify UI issues and improve application reliability.
+
+### 4. Continuous Integration
+- Configured **GitHub Actions** to automate project checks when code changes are pushed.
+- Set up workflow steps for linting, running tests, and building the application.
+- Improved consistency by automating checks before changes are considered ready.
+
+### 5. Deployment
+- Deployed the frontend and backend using **Vercel**.
+- Configured the frontend to communicate with the deployed backend API.
+- Resolved cross-origin resource sharing (CORS) configuration issues affecting course loading and authentication.
+- Verified that the live application supports its main features, including course browsing, registration, login, lesson viewing, and the dashboard.
+
+### 6. Documentation
+- Updated the project README with deployment links, testing information, security features, and CI details.
+- Documented the purpose of the major tools and technologies used.
+- Prepared the project for review by providing accessible deployment URLs and implementation details.
+
+## Technologies and Tools
+- React
+- Node.js and Express.js
+- MongoDB and Mongoose
+- Jest and Supertest
+- React Testing Library
+- Helmet
+- Express Rate Limit
+- Git and GitHub
+- GitHub Actions
+- Vercel
+
+## Outcome
+Task 5 improved FreshCart Learning Hub through automated testing, backend security middleware, continuous integration, deployment, and documentation. These changes help make the application more reliable, maintainable, and accessible for demonstration and review.
+
+## Live Links
+- **Frontend:** https://fresh-cart-learning-hub.vercel.app
+- **Backend API:** https://fresh-cart-learning-hub-6ahj.vercel.app
